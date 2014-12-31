@@ -3,23 +3,21 @@ package com.example.imagechanging;
 import java.io.InputStream;
 import java.net.URL;
 
-import android.support.v7.app.ActionBarActivity;
+
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.ViewSwitcher.ViewFactory;
 
-public class ImageChangingActivity extends ActionBarActivity {
+
+public class ImageChangingActivity extends Activity {
 
 	private Integer images [] = {R.drawable.pic1, R.drawable.pic2, R.drawable.pic3};
 	
@@ -58,23 +56,8 @@ public class ImageChangingActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image_changing);
 		
-		//initializeImageSwitcher();
 		setInitialImage();
 		setImageRotateListener();
-		
-	}
-
-	private void initializeImageSwitcher() {
-		final ImageSwitcher imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
-		imageSwitcher.setFactory(new ViewFactory() {
-			@Override
-			public View makeView() {
-				ImageView imageView = new ImageView(ImageChangingActivity.this);
-				return imageView;
-			}});
-		
-		imageSwitcher.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
-		imageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_out));
 		
 	}
 
@@ -101,29 +84,10 @@ public class ImageChangingActivity extends ActionBarActivity {
 		final ImageView imageView = (ImageView) findViewById(R.id.imageDisplay);
 		imageView.setImageResource(images[currImage]);
 		
-		//final ImageSwitcher imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
-		//imageSwitcher.setImageResource(images[currImage]);
 		
 		//ImageDownloader imageDownLoader = new ImageDownloader(imageView);
 		//imageDownLoader.execute(imageUrls[currImage]);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.image_changing, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+	
 }
